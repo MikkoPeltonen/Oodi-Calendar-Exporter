@@ -84,24 +84,28 @@ function addToCalendar() {
   var eventIndex = $(this).data("event-index");
   var event = events[eventIndex];
 
-  alertify
-    .okBtn("Add events")
-    .cancelBtn("Cancel")
-    .confirm("Are you sure you want to add the following events to your calendar?<br><br>" + event.name, function () {
-      // Get a JSON representation of the event in a Google Calendar API format
-      var googleCalendarEvents = makeGoogleCalendarEvent(event);
+  chrome.storage.sync.get("defaultCalendarName", function (items) {
+    var calendarName = items["defaultCalendarName"];
 
-      // Sending an authenticated XHR request requires an OAuth token. Therefore we
-      // must do it in a background script because content scripts don't have
-      // access to that information.
-      chrome.runtime.sendMessage({ action: "addToCalendar", googleCalendarEvents }, function (success) {
-        if (success) {
-          alertify.logPosition("bottom right").success("Events were added to your calendar!");
-        } else {
-          alertify.logPosition("bottom right").error("Oops! I couldn't add all events to your calendar.");
-        }
-      });
-  }, function () {});
+    alertify
+      .okBtn("Add events")
+      .cancelBtn("Cancel")
+      .confirm("Are you sure you want to add the following events to calendar " + calendarName + "?<br><br>" + event.name, function () {
+        // Get a JSON representation of the event in a Google Calendar API format
+        var googleCalendarEvents = makeGoogleCalendarEvent(event);
+
+        // Sending an authenticated XHR request requires an OAuth token. Therefore we
+        // must do it in a background script because content scripts don't have
+        // access to that information.
+        chrome.runtime.sendMessage({ action: "addToCalendar", googleCalendarEvents }, function (success) {
+          if (success) {
+            alertify.logPosition("bottom right").success("Events were added to your calendar!");
+          } else {
+            alertify.logPosition("bottom right").error("Oops! I couldn't add all events to your calendar.");
+          }
+        });
+    }, function () {});
+  });
 }
 
 
