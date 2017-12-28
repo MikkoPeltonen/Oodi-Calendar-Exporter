@@ -1,0 +1,42 @@
+{
+  "name": "Oodi Google Calendar Exporter",
+  "description": "Export course dates to Google Calendar",
+  "version": "0.1",
+  "author": "Mikko Peltonen",
+  "manifest_version": 2,
+  "oauth2": {
+    "client_id": "525092683713-qqoo2od1rjuob4ji2nlm0ptd3h0ffv57.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calendar"
+    ]
+  },
+  "permissions": [
+    "identity",
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_popup": "settings.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://oodi.aalto.fi/a/opettaptied.jsp*"
+      ],
+      "js": [
+        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/alertify.js",
+        "js/oodi.js"
+      ],
+      "css": [
+        "css/libs/alertify.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  }
+}

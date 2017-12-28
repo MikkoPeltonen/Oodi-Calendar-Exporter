@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/libs/spinner.css">
+    <link rel="stylesheet" href="css/settings.css">
+  </head>
+  <body>
+    <h3>Oodi Calendar Exporter Settings</h3>
+
+    <div id="loader">
+      <p>
+        Loading calendars
+      </p>
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </div>
+
+    <div id="calendars_container">
+      <p>
+        Select a calendar for saving the events.
+      </p>
+      <select name="target_calendar"></select>
+    </div>
+    <p id="calendars_not_found">
+      No calendars were found. Go to Google Calendar and create a new calendar.
+    </p>
+  </body>
+
+  <script src="js/libs/jquery-3.2.1.min.js"></script>
+  <script src="js/settings.js"></script>
+</html>

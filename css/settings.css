@@ -1,0 +1,22 @@
+body {
+  min-width: 250px;
+  padding: 10px 20px;
+}
+
+h3 {
+  margin: 0;
+  padding-bottom: 7px;
+}
+
+#loader {
+  width: 100%;
+  text-align: center;
+}
+
+#calendars_container, #calendars_not_found {
+  display: none;
+}
+
+select[name="target_calendar"] {
+  width: 100%;
+}
