@@ -1,7 +1,7 @@
 {
   "name": "Oodi Google Calendar Exporter",
   "description": "Export course dates to Google Calendar",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Mikko Peltonen",
   "manifest_version": 2,
   "oauth2": {

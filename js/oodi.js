@@ -87,6 +87,12 @@ function addToCalendar() {
   chrome.storage.sync.get("defaultCalendarName", function (items) {
     var calendarName = items["defaultCalendarName"];
 
+    // If calendar name is not defined, a default calendar has not been selected.
+    if (calendarName === undefined) {
+      alertify.alert("You haven't selected a calendar. Open the settings window and choose a calendar.");
+      return;
+    }
+
     alertify
       .okBtn("Add events")
       .cancelBtn("Cancel")
