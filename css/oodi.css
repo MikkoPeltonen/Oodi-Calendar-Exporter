@@ -1,0 +1,13 @@
+.alertify {
+  z-index: 1000 !important;
+}
+
+.alertify .dialog p.msg {
+	margin-bottom: 20px;
+}
+
+.alertify .dialog input {
+  margin: 0px 12px 15px 12px;
+  width: calc(100% - 24px) !important;
+  border-top-color: lightgray;
+}

@@ -96,7 +96,15 @@ function addToCalendar() {
     alertify
       .okBtn("Add events")
       .cancelBtn("Cancel")
-      .confirm("Are you sure you want to add the following events to calendar " + calendarName + "?<br><br>" + event.name, function () {
+      .placeholder("Add custom event name")
+      .prompt("Are you sure you want to add the following events to calendar " + calendarName + "?<br><br>" + event.name, function (value, evt) {
+        evt.preventDefault();
+
+        // Update event name if input value was changed
+        if (value !== "") {
+          event.name = value;
+        }
+
         // Get a JSON representation of the event in a Google Calendar API format
         var googleCalendarEvents = makeGoogleCalendarEvent(event);
 
@@ -110,7 +118,14 @@ function addToCalendar() {
             alertify.logPosition("bottom right").error("Oops! I couldn't add all events to your calendar.");
           }
         });
-    }, function () {});
+      }, function (evt) {
+        evt.preventDefault();
+      });
+
+    // Prevent input focus on prompt open
+    setTimeout(function () {
+      $(".alertify .dialog input").blur();
+    }, 100);
   });
 }
 
@@ -165,7 +180,7 @@ $rows.each(function (index) {
       var endTime = [timeRange[2], timeRange[3]];
       var room = $td.find("input[type='submit']").eq(rangeIndex).val();
 
-      evt.schedule.push({startDate, endDate, startTime, endTime, room });
+      evt.schedule.push({ startDate, endDate, startTime, endTime, room });
     });
   });
 
