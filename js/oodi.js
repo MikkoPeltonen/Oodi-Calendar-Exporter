@@ -137,17 +137,17 @@ var courseName = courseDetails[1];
 
 // Get all rows containing event data
 var $rows = $("table.kll > tbody > tr").filter(function () {
-  return $(this).find("> td").length == 2;
+  return $(this).find("> td").length == 3;
 });
 
 $rows.each(function (index) {
-  var $tds = $(this).find("> td").eq(1).find("> table > tbody > tr > td");
+  var $tds = $(this).find("> td").eq(2).find("> table > tbody > tr > td");
 
   var eventType = $(this).closest("table.kll").eq(0).find("tr:eq(0) > th tbody:eq(1) > tr:eq(1) > th:eq(0)").text().trim();
   var name = $tds.eq(0).text().trim();
 
   var evt = {
-    name: eventType + " " + name + " (" + courseCode + " " + courseName + ")",
+    name: (eventType + " " + name + " (" + courseCode + " " + courseName + ")").trim(),
     schedule: [],
   };
 
